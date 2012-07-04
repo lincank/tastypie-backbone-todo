@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>
+        Backbone Example
+    </title>
+
+    <link href="/static/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/static/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+        <link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <![endif]-->
+    <!--<link rel="stylesheet" href="css/todos.css" type="text/css" media="screen" />-->
+
+    <script type="text/javascript" src="/static/js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="/static/js/underscore-1.1.6.js"></script>
+    <script type="text/javascript" src="/static/js/backbone.js"></script>
+    <script type="text/javascript" src="/static/js/tastypie.js"></script>
+    <script type="text/javascript" src="/static/js/todos.js"></script>
+
+    <!--<script src="js/jslitmus.js"></script>-->
+
+</head>
+
+<body>
+<div id="todo-app">
+    <div class="title">
+        Todos
+    </div>
+    <div class="content">
+        <div id="create-todo">
+            <input type="text" class="item-edit" id="create-todo-input" placeholder="What needs to be done?" />
+            <span class="ui-tooltip-top"  style="display: none;">Press Enter to save this task</span>
+        </div>
+        <div id="todo-collection">
+            <input class="check-all" type="checkbox" id="check-all" />
+            <label for="check-all">
+                Mark all as completed
+            </label>
+            <ul id="todo-list" ></ul>
+        </div>
+        <div id="todo-status"></div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/script" id="item-template">
+
+    <div class="item-show">
+        <input class="check" type="checkbox" <%= done ? 'checked="checked"' : ''  %> />
+        <label class="todo-content <%= done ? 'item-done' : ''  %>">
+            <%= content %>
+        </label>
+        <span class="todo-destroy"><a href="#">X</a></span>
+    </div>
+    <div class="item-edit">
+        <input type="text" value="<%= content %>"/>
+    </div>
+
+</script>
+
+<script id="status-template" type="text/script">
+
+    <% if (total) { %>
+            <span class="todo-count">
+                <span class="number"><%= remain %></span>
+                <span class="word">todo left.</span>
+            </span>
+    <% } %>
+    <% if (done) { %>
+		    <span class="clear-done">
+                <a href="#"> clear
+                    <span class="number-done">
+                        <%= done %>
+                    </span>
+                    done items
+                </a>
+            </span>
+    <% } %>
+
+</script>
